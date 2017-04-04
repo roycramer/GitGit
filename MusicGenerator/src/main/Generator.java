@@ -38,7 +38,7 @@ public class Generator {
 	final static int repetitions = 6;
 	final static int cpreps = 2;
 	final static int totalChords = 16;
-	final static int realTempo = 90;
+	final static int realTempo = 120;
 	
 	Random rand;
 	String name, verseInfoString, debugStringSeeds;
@@ -169,16 +169,16 @@ public class Generator {
 				previous2 = s2[i - 1];
 				previous3 = s3[i - 1];
 			}
-				
+			
 			s1[i] = new Section(notes, this, previous1, dms, 0);
-			s2[i] = new Section(notes, this, previous2, dms+rand.nextInt(1), 1);
-			s3[i] = new Section(notes, this, previous3, dms+rand.nextInt(1), 2);
+			s2[i] = new Section(notes, this, previous2, dms+rand.nextInt(2), 1);
+			s3[i] = new Section(notes, this, previous3, dms+rand.nextInt(2), 2);
 		}
 		for (int i = 0; i < genChords.length; i++) {
 			
 			String copyIndicator1 = "";
 			String copyIndicator3 = "";
-			double[] distribution_copy = { 0.3, 0.25, 0.25, 0.2 };
+			double[] distribution_copy = { 0.3, 0.7, 0.0, 0.0 };
 			int outcome1 = outcome(distribution_copy);
 			int outcome3 = outcome(distribution_copy);
 			//if outcome is 0, do no copies.
@@ -265,7 +265,7 @@ public class Generator {
 		k = new Key(new Note(keys[randIndex(keys.length)] + ""), sc);
 		if (FrameGUI.cMaj.isSelected())k = new Key(new Note(keys[0] + ""), sc);
 		
-		tempoDisp = rand.nextInt(60);
+		tempoDisp = rand.nextInt(30);
 		assignedTempo = realTempo + tempoDisp;
 
 		song = new Pattern();
